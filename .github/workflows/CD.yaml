@@ -1,0 +1,17 @@
+name: Deploy Sonarr Kubernetes
+
+on:
+    push: 
+        branches: 
+            - main
+jobs:
+    CD:
+      uses: ZundereneWork/helm-chart/.github/workflows/Deployment_Helm.yml@main
+      with:
+        release_name: cinema
+        runner: arc-runner-set
+        proyect: helm-chart
+        chart: app
+        version: 3.0.0
+        ns: app
+      secrets: inherit

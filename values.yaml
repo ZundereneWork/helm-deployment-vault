@@ -1,0 +1,141 @@
+sonarr:
+  Image: 'lscr.io/linuxserver/sonarr:latest' 
+  Service:
+      port: 8989
+  PVC:
+      storageClassName: microk8s-hostpath
+      capacity: 1Gi
+  Ingress:
+    Host: sonarr.thelmalouise.ddns.net
+    prefix: ""
+  Volumes:
+        config:
+          type: volumenClain
+          mountPath: /config
+        serie:
+          type: nfs
+          mountPath: /tv
+          server: 192.168.18.10
+          path: /volume1/Multimedia/Series
+        descargas:
+          type: nfs 
+          mountPath: /downloads
+          server: 192.168.18.10
+          path: /volume1/Descargas
+  
+
+radarr:
+  Image: 'lscr.io/linuxserver/radarr:latest' 
+  Service:
+      port: 7878
+  PVC:
+      storageClassName: microk8s-hostpath
+      capacity: 1Gi
+  Ingress:
+    Host: radarr.thelmalouise.ddns.net
+    prefix: ""
+  Volumes:
+        config:
+          type: volumenClain
+          mountPath: /config
+        serie:
+          type: nfs
+          mountPath: /movies
+          server: 192.168.18.10
+          path: /volume1/Multimedia/Peliculas
+        descargas:
+          type: nfs 
+          mountPath: /downloads
+          server: 192.168.18.10
+          path: /volume1/Descargas
+prowlarr:
+  Image: 'lscr.io/linuxserver/prowlarr:develop'  
+  Service:
+      port: 9696
+  PVC:
+      storageClassName: microk8s-hostpath
+      capacity: 1Gi
+  Ingress:
+    Host: prowlarr.thelmalouise.ddns.net
+    prefix: ""
+  Volumes:
+        config:
+          type: volumenClain
+          mountPath: /config
+jellyseerr:
+  Image: 'fallenbagel/jellyseerr'  
+  Service:
+      port: 5055
+  PVC:
+      storageClassName: microk8s-hostpath
+      capacity: 1Gi
+  Ingress:
+    Host: jellyseerr.thelmalouise.ddns.net
+    prefix: ""
+  Volumes:
+        config:
+          type: volumenClain
+          mountPath: /config
+jellyfin:
+  Image: 'jellyfin/jellyfin:latest' 
+  Service:
+      port: 8096
+  PVC:
+      storageClassName: microk8s-hostpath
+      capacity: 1Gi
+  Ingress:
+    Host: jellyfin.thelmalouise.ddns.net
+    prefix: ""
+  Volumes:
+        config:
+          type: volumenClain
+          mountPath: /config
+        peliculas:
+          type: nfs
+          mountPath: /movies
+          server: 192.168.18.10
+          path: /volume1/Multimedia/Peliculas
+        serie:
+          type: nfs 
+          mountPath: /tv
+          server: 192.168.18.10
+          path: /volume1/Multimedia/Series
+bazarr:
+  Image: 'lscr.io/linuxserver/bazarr:latest'
+  Service:
+      port: 6767
+  PVC:
+      storageClassName: microk8s-hostpath
+      capacity: 1Gi
+  Ingress:
+    Host: bazarr.thelmalouise.ddns.net
+    prefix: ""
+  Volumes:
+        config:
+          type: volumenClain
+          mountPath: /config
+        peliculas:
+          type: nfs
+          mountPath: /movies
+          server: 192.168.18.10
+          path: /volume1/Multimedia/Peliculas
+        serie:
+          type: nfs 
+          mountPath: /tv
+          server: 192.168.18.10
+          path: /volume1/Multimedia/Series
+vault:
+  Image: 'lscr.io/linuxserver/bazarr:latest'
+  Service:
+      port: 80
+  PVC:
+      storageClassName: nfs-csi
+      capacity: 1Gi
+  Ingress:
+    Host: vault.thelmalouise.ddns.net
+    prefix: ""
+  Volumes:
+        config:
+          type: volumenClain
+          mountPath: /data
+        
