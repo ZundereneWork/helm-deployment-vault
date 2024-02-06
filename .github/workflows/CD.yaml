@@ -8,10 +8,10 @@ jobs:
     CD:
       uses: ZundereneWork/helm-chart/.github/workflows/Deployment_Helm.yml@main
       with:
-        release_name: cinema
+        release_name: vault
         runner: arc-runner-set
         proyect: helm-chart
         chart: app
         version: 3.0.0
-        ns: app
+        ns: security
       secrets: inherit
