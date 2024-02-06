@@ -13,6 +13,3 @@ vaultwarden:
           type: volumenClain
           mountPath: /data
         
-  
-
-
