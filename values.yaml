@@ -3,7 +3,7 @@ vaultwarden:
   Service:
       port: 80
   PVC:
-      storageClassName: nfs-csi
+      storageClassName: microk8s-hostpath
       capacity: 1Gi
   Ingress:
     Host: vault.thelmalouise.ddns.net
